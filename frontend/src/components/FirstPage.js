@@ -1,8 +1,11 @@
 import React from 'react'
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 
 const FirstPage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div style = {{background: "antiquewhite"}}>
       <br></br>
@@ -16,7 +19,7 @@ const FirstPage = () => {
       <br></br>
       <br></br>
       <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-        <button type="button" className="btn btn-outline-success mx-4 my-4">Explore Projects</button>
+        <button type="button" className="btn btn-outline-success mx-4 my-4" onClick={()=>navigate('/allProjects')}>Explore Projects</button>
         <button type="button" className="btn btn-outline-info mx-4 my-4">Learn More &rarr;</button>
       </div>
       <br></br>

@@ -8,6 +8,7 @@ import FAQs from './components/FAQs';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import ProjectCard from './components/ProjectCard';
+import AllProjects from './components/AllProjects';
 
 
 function App() {
@@ -18,9 +19,9 @@ function App() {
       <KeyFeatures/>
       <FAQs/>
       <Footer/>
-      <ProjectCard/>
       <Routes>
         <Route exact path="/login" element={<Login/>} />
+        <Route exact path="/allProjects" element={<AllProjects/>} />
       </Routes>
     </Router>
   );
