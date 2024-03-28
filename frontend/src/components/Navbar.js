@@ -24,9 +24,14 @@ const Navbar = (props) => {
                             <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/login"? "active": ""}`} to="/login">About</Link>
+                            <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} to="/about">About</Link>
                         </li>
-
+                        <li className="nav-item">
+                            <Link className={`nav-link ${location.pathname==="/login"? "active": ""}`} aria-current="page" to="/login">Login</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className={`nav-link ${location.pathname==="/signup"? "active": ""}`} to="/signup">Signup</Link>
+                        </li>
                     </ul>
                     {!localStorage.getItem('token')?
                     <form className="d-flex">            
