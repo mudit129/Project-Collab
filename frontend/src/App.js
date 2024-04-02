@@ -1,15 +1,20 @@
-// App.js
 import React from "react";
-import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import KeyFeatures from "./components/KeyFeatures";
-import FAQ from "./components/FAQ";
-import ContactUs from "./components/ContactUs";
-import Footer from "./components/Footer";
-// Import other components as needed
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
+import UserProfile from "./pages/User/UserProfile";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/user/:activepage" element={<UserProfile />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
