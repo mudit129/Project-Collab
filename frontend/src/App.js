@@ -1,14 +1,14 @@
 // import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './components/Home';
+import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import Signup from './components/Signup';
-// import FAQs from './components/FAQs';
+import Signup from './pages/Signup';
+import AddProject from './pages/AddProject';
 // import Footer from './components/Footer';
-import Login from './components/Login';
+import Login from './pages/Login';
 // import ProjectCard from './components/ProjectCard';
-import AllProjects from './components/AllProjects';
+import AllProjects from './pages/AllProjects';
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/signup" element={<Signup/>} />
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/allProjects" element={<AllProjects/>} />
+        <Route exact path="/addProject" element={<AddProject/>} />
       </Routes>
     </Router>
   );

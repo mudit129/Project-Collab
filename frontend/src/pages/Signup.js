@@ -3,9 +3,9 @@ import React from "react";
 const Signup = () => {
   return (
     <div className="container d-flex justify-content-center align-items-center my-1">
-      <div className="card border border-success" style={{ width: "30rem" }}>
+      <div className="card border border-success" style={{ width: "30rem", background: "antiquewhite" }}>
         <div className="card-body">
-          <h5 className="card-title text-center">Signup</h5>
+          <h4 className="card-title text-center">Signup</h4>
           <form>
           <div className="mb-3 ">
               <label for="name" className="form-label">

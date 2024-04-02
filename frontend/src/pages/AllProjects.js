@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "../components/ProjectCard";
 
 const AllProjects = () => {
   const arr = [1, 2, 3, 4, 5];

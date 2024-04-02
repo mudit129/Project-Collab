@@ -6,7 +6,7 @@ const Login = () => {
     <div className="container d-flex justify-content-center align-items-center my-4">
       <br></br>
       <br></br>
-      <div className="card border border-success" style={{ width: "22rem" }}>
+      <div className="card border border-success" style={{ width: "22rem", background: "antiquewhite"}}>
         <div className="card-body">
           <h5 className="card-title text-center mb-2">Login</h5>
           <form>
