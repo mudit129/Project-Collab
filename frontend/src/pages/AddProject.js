@@ -33,7 +33,7 @@ const AddProject = () => {
                 aria-describedby="emailHelp"
               />
             </div>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-center">
+            <div className="d-grid gap-2 d-md-flex justify-content-md-center my-4">
               <div className="dropdown">
                 <button
                   className="btn btn-secondary dropdown-toggle mx-4"
@@ -121,7 +121,7 @@ const AddProject = () => {
                 aria-describedby="emailHelp"
               />
             </div> */}
-            <div className="mt-4">
+            <div className="my-4">
               <input
                 className="file"
                 type="file"
@@ -129,17 +129,27 @@ const AddProject = () => {
                 id="uploadbtn"
                 //   style={{ display: "none" }}
               />
+              <button type="button" class="btn btn-outline-success">Upload Image</button>
             </div>
-            <div className="mb-3">
-              <label for="url" className="form-label mt-3">
-                URL
-              </label>
-              <input
-                type="text"
-                className="form-control border border-primary"
-                id="url"
-                aria-describedby="emailHelp"
-              />
+            <label for="url" className="form-label">
+                  Enter relevant URLs
+                </label>
+            <div className="d-grid gap-2 d-md-flex justify-content-md-center mb-3">
+                
+                <input
+                  type="text"
+                  placeholder = "Enter URL"
+                  className="form-control border border-primary"
+                  id="url"
+                  aria-describedby="emailHelp"
+                />
+                <input
+                  type="text"
+                  placeholder = "Enter URL description"
+                  className="form-control border border-primary"
+                  id="url"
+                  aria-describedby="emailHelp"
+                />
             </div>
             {/* <div className="mb-3">
               <label for="exampleInputPassword1" className="form-label">
