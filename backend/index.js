@@ -1,22 +1,21 @@
-const express = require('express')
-const app = express()
-const cors = require('cors');
-const port = process.env.PORT || 5000
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const connection = require("./db");
+const userRoutes = require("./routes/Users");
+const authRoutes = require("./routes/Auth");
 
-// const connectToMongo = require('./db');
-// connectToMongo();
+// database connection
+connection();
 
-app.use(express.json())
+// middlewares
+app.use(express.json());
 app.use(cors());
 
-// app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/notes', require('./routes/notes'));
+// routes
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
-
-app.get('/', (req, res) => {
-  res.send('Hello Mudit!')
-})
-
-app.listen(port, () => {
-  console.log(`iNotebook backend listening on port ${port}`)
-})
+const port = process.env.PORT || 8080;
+app.listen(port, console.log(`Listening on port ${port}...`));
