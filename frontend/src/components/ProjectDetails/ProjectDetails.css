@@ -1,0 +1,54 @@
+.research-project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+}
+
+.top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.top-section img {
+  width: 50%;
+  max-width: 300px; /* Adjust max-width as needed */
+}
+
+.top-section h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.content-section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  padding: 1rem;
+}
+
+.left-column p {
+  margin-bottom: 1rem;
+}
+
+.right-column h3 {
+  margin-bottom: 0.5rem;
+}
+
+.right-column a {
+  color: orange;
+  text-decoration: none;
+}
+
+.right-column a:hover {
+  text-decoration: underline;
+}
