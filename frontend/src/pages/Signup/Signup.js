@@ -12,19 +12,18 @@ const Signup = () => {
     password: "",
   });
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [msg, setMsg] = useState("");
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const handleChange = ({ currentTarget: input }) => {
+    setData({ ...data, [input.name]: input.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const url = "http://localhost:8080/api/users";
-      const response = await axios.post(url, data);
-      navigate("/login");
-      console.log(response.data.message);
+      const { data: res } = await axios.post(url, data);
+      setMsg(res.message);
     } catch (error) {
       if (
         error.response &&
@@ -96,6 +95,7 @@ const Signup = () => {
               className="input"
             />
             {error && <div className="error_msg">{error}</div>}
+            {msg && <div className="success_msg">{msg}</div>}
             <button type="submit" className="green_btn">
               Sign Up
             </button>
