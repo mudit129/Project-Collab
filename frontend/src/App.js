@@ -26,13 +26,9 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/projectdetails" element={<ProjectDetails />} />
         <Route path="/user/:activepage" element={<UserProfile />} />
-<<<<<<< HEAD
-       
-=======
         <Route exact path="/allProjects" element={<AllProjects />} />
         <Route exact path="/addProject" element={<AddProject />} />
         <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
->>>>>>> baa6935a292d734a6c353c13695db10e4f0333bf
       </Routes>
     </Router>
   );

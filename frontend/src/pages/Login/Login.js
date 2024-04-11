@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Login.css";
-
+const port = 5001;
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:8080/api/auth";
+      const url = `http://localhost:${port}/api/auth`;
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
       window.location = "/";

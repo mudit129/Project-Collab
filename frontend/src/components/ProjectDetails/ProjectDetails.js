@@ -5,20 +5,18 @@ const ResearchProject = () => {
   const [projectData, setProjectData] = useState(null);
 
   // Function to handle form submission and fetch data from Node.js API
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  useEffect(()=>{
+    const projectId = "6612709513d84ae1da9bc836";
 
+    axios.get(`/api/projects/getproject/${projectId}`)
+    .then(res => console.log(res))
+    .catch ((error) => console.error(error))
+  },[])
     // Get form data
-    const projectId = event.target.projectId.value;
-
-    try {
-      const response = await axios.get(`/api/projects/${projectId}`); // Replace with your actual API endpoint
-      setProjectData(response.data);
-    } catch (error) {
-      console.error(error);
-      // Handle errors appropriately (e.g., display error message to user)
-    }
-  };
+    
+  // };
 
   // Render project details if data is available
   if (projectData) {

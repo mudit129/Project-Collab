@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 
+const port = 5001;
+
 const Signup = () => {
   const [data, setData] = useState({
     firstName: "",
@@ -21,7 +23,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:8080/api/users";
+      const url = `http://localhost:${5001}/api/users`;
       const { data: res } = await axios.post(url, data);
       setMsg(res.message);
     } catch (error) {

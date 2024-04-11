@@ -4,6 +4,7 @@ const Token = require("../models/Token");
 const crypto = require("crypto");
 const sendEmail = require("../utils/SendEmail");
 const bcrypt = require("bcrypt");
+const fetchuser = require('../middleware/fetchuser')
 
 router.post("/", async (req, res) => {
   try {
