@@ -6,7 +6,7 @@ const ProjectCard = (props) => {
     <div className="col-md-4">
       <div className="card my-3 mx-2">
         <img
-          src='../../public/Images/DefaultProjectPic.jpg'
+          src="../../public/Images/DefaultProjectPic.jpg"
           className="card-img-top"
           alt="project"
         ></img>
