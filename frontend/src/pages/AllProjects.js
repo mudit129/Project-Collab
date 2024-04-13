@@ -96,7 +96,7 @@ const AllProjects = () => {
           <h3 className="text-center key">All Projects</h3>
           <div className="container row">
             {allProjects && allProjects.map((project,idx) => {
-              return <ProjectCard title = {project.title} desc = {project.desc} key={idx} />;
+              return <ProjectCard id = {project._id} title = {project.title} desc = {project.desc} key={idx} />;
             })}
           </div>
         </div>

@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProjectCard = (props) => {
+  const navigate = useNavigate();
+  console.log(props.id)
   return (
     <div className="col-md-4">
       <div className="card my-3 mx-2">
@@ -15,9 +17,9 @@ const ProjectCard = (props) => {
           <p className="card-text">
           {props.desc}
           </p>
-          <Link to="/" className="btn btn-primary">
+          <button className="btn btn-primary" onClick = {() => navigate(`/projectdetails/${props.id}`)}>
             Read More
-          </Link>
+          </button>
         </div>
       </div>
     </div>

@@ -1,35 +1,41 @@
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const Joi = require("joi");
-const passwordComplexity = require("joi-password-complexity");
+// const jwt = require("jsonwebtoken");
+// const Joi = require("joi");
+// const passwordComplexity = require("joi-password-complexity");
 
-const userSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  rollNumber: { type: String, required: true },
+const UserSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  type: { type: String, default: "user" },
+  rollNumber: { type: String },
   phone: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  verified: { type: Boolean, default: false },
+  // verified: { type: Boolean, default: false },
+  pending: { type: Object, default: {} },
+  approved: { type: Object, default: {} },
 });
 
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "7d",
-  });
-  return token;
-};
+const User = mongoose.model('user', UserSchema);
+module.exports = User;
 
-const User = mongoose.model("user", userSchema);
+// userSchema.methods.generateAuthToken = function () {
+//   const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
+//     expiresIn: "7d",
+//   });
+//   return token;
+// };
 
-const validate = (data) => {
-  const schema = Joi.object({
-    firstName: Joi.string().required().label("First Name"),
-    rollNumber: Joi.string().required().label("RollNumber"),
-    phone: Joi.string().required().label("Phone"),
-    email: Joi.string().email().required().label("Email"),
-    password: passwordComplexity().required().label("Password"),
-  });
-  return schema.validate(data);
-};
+// const User = mongoose.model("user", userSchema);
 
-module.exports = { User, validate };
+// const validate = (data) => {
+//   const schema = Joi.object({
+//     firstName: Joi.string().required().label("First Name"),
+//     rollNumber: Joi.string().required().label("RollNumber"),
+//     phone: Joi.string().required().label("Phone"),
+//     email: Joi.string().email().required().label("Email"),
+//     password: passwordComplexity().required().label("Password"),
+//   });
+//   return schema.validate(data);
+// };
+
+// module.exports = { User, validate };

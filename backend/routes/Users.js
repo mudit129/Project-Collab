@@ -1,7 +1,10 @@
-const router = require("express").Router();
-const { User, validate } = require("../models/User");
-const bcrypt = require("bcrypt");
-const fetchuser = require('../middleware/fetchuser')
+const express = require("express");
+const router = express.Router();
+const fetchuser = require("../middleware/fetchuser");
+const Project = require("../models/Project");
+const User = require("../models/User");
+// const Prof = require("../models/Prof");
+const { body, validationResult } = require("express-validator");
 
 router.post("/", async (req, res) => {
   try {
@@ -24,5 +27,36 @@ router.post("/", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
+
+
+router.get('/pendingProjects', fetchuser, async(req,res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if(!user) {
+      return res.status(404).send("Not Found");
+    }
+
+    res.json(user.pending);
+  }
+  catch (error) {
+    console.error(error.message)
+    res.status(500).send("Internal server error");
+  }
+})
+
+router.get('/approvedProjects', fetchuser, async(req,res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if(!user) {
+      return res.status(404).send("Not Found");
+    }
+
+    res.json(user.approved);
+  }
+  catch (error) {
+    console.error(error.message)
+    res.status(500).send("Internal server error");
+  }
+})
 
 module.exports = router;
