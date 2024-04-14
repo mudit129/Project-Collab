@@ -1,3 +1,4 @@
+/* Default styles */
 .signup_container {
   width: 100%;
   min-height: 100vh;
@@ -8,12 +9,13 @@
 }
 
 .signup_form_container {
-  width: 900px;
-  height: 500px;
+  width: 90%;
+  max-width: 900px;
+  height: auto;
   display: flex;
   border-radius: 10px;
-  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
-    0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+    0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
 
 .left {
@@ -54,12 +56,14 @@
 .form_container h1 {
   font-size: 40px;
   margin-top: 0;
+  color: black;
 }
 
 .input {
   outline: none;
   border: none;
-  width: 370px;
+  width: 100%;
+  max-width: 370px;
   padding: 15px;
   border-radius: 10px;
   background-color: #edf5f3;
@@ -67,9 +71,8 @@
   font-size: 14px;
 }
 
-.error_msg,
-.success_msg {
-  width: 370px;
+.error_msg {
+  width: 100%;
   padding: 15px;
   margin: 5px 0;
   font-size: 14px;
@@ -79,10 +82,6 @@
   text-align: center;
 }
 
-.success_msg {
-  background-color: #5cdd5c;
-}
-
 .white_btn,
 .green_btn {
   border: none;
@@ -90,7 +89,8 @@
   padding: 12px 0;
   background-color: white;
   border-radius: 20px;
-  width: 180px;
+  width: 50%;
+  max-width: 180px;
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
@@ -100,4 +100,37 @@
   background-color: #3bb19b;
   color: white;
   margin: 10px;
+}
+
+/* Media queries for tablet */
+@media screen and (max-width: 1024px) {
+  .signup_form_container {
+    flex-direction: column;
+  }
+}
+
+/* Media queries for mobile */
+@media screen and (max-width: 768px) {
+  .signup_form_container {
+    width: 100%; /* Adjusted width to 100% for full-width on mobile */
+    border-radius: 0; /* Removed border-radius for full-width on mobile */
+    box-shadow: none; /* Removed box-shadow for cleaner appearance on mobile */
+  }
+
+  .left,
+  .right {
+    border-radius: 0; /* Removed border-radius for full-width on mobile */
+  }
+
+  .input,
+  .white_btn,
+  .green_btn {
+    width: 80%; /* Adjusted width for better fit on mobile screens */
+    max-width: none; /* Removed max-width for full-width on mobile */
+    margin: 5px auto; /* Centered the elements */
+  }
+
+  .form_container h1 {
+    font-size: 30px; /* Reduced font size for better readability on mobile */
+  }
 }
