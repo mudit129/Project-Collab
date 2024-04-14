@@ -6,19 +6,18 @@ import UserSidebar from "../../components/UserProfile/UserSidebar";
 import AccountSettings from "../../components/UserProfile/AccountSettings";
 import "./UserProfile.css";
 import ChangePassword from "../../components/UserProfile/ChangePassword";
-import img from "../../images/airplane.jpg";
+import img from "../../images/websitepic.jpg";
 
 const UserProfile = () => {
   const { activepage } = useParams();
   return (
     <div className="userprofile">
-      <Navbar />
       <SingleBanner bannerimage={img} heading="My Profile" />
       <div className="userprofilein">
-        <div className="left">
+        <div className="left_profile">
           <UserSidebar activepage={activepage} />
         </div>
-        <div className="right">
+        <div className="right_profile">
           {activepage === "accountsettings" && <AccountSettings />}
           {activepage === "changepassword" && <ChangePassword />}
         </div>
