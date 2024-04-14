@@ -1,8 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import ProjectCard from "../components/ProjectCard";
+import axios from "axios"
 
 const AllProjects = () => {
-  const arr = [1, 2, 3, 4, 5];
+  const arr = [1, 2, 3, 4, 5, 6, 7];
+  const [allProjects, setAllProjects] = useState(null);
+  console.log(arr);
+  const getPdf = async()=>{
+    const url = "http://localhost:5001/api/projects/get-all-projects";
+    console.log(url)
+    const result = await axios.get(url);
+    console.log(result.data.data);
+    setAllProjects(result.data.data);
+  }
+  
+  useEffect(()=>{
+    console.log("On All Projects Page")
+    getPdf();
+  },[])
   return (
     <div className="d-grid gap-1 d-md-flex justify-content-md-center">
       <div className="card" style={{ width: "20%" }}>
@@ -80,11 +95,9 @@ const AllProjects = () => {
         <div className="container">
           <h3 className="text-center key">All Projects</h3>
           <div className="container row">
-            {arr.length === 0
-              ? "No projects to display"
-              : arr.map((num) => {
-                  return <ProjectCard key={num} />;
-                })}
+            {allProjects && allProjects.map((project,idx) => {
+              return <ProjectCard id = {project._id} title = {project.title} desc = {project.desc} key={idx} />;
+            })}
           </div>
         </div>
       </div>

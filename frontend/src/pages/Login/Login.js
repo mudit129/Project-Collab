@@ -1,12 +1,13 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
-
+const port = 5001;
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -14,20 +15,43 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const url = "http://localhost:5001/api/auth";
-      const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
-      window.location = "/";
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
-    }
+    const {email, password} = data;
+    const url = `http://localhost:${port}/api/auth/login`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email, password})
+        });
+        const json = await response.json()
+        console.log(json);
+        if (json.success){
+            // Save the auth token and redirect
+            console.log(json.authToken);
+            localStorage.setItem('token', json.authToken); 
+            // props.showAlert("Logged in successfully",'success')
+            alert("Logged in successfully");
+            navigate("/");
+        }
+        else{
+          // props.showAlert("Invalid credentials",'danger')
+          alert("Invalid credentials")
+        }
+    // try {
+    //   const url = `http://localhost:${port}/api/auth`;
+    //   const { data: res } = await axios.post(url, data);
+    //   localStorage.setItem("token", res.data);
+    //   window.location = "/";
+    // } catch (error) {
+    //   if (
+    //     error.response &&
+    //     error.response.status >= 400 &&
+    //     error.response.status <= 500
+    //   ) {
+    //     setError(error.response.data.message);
+    //   }
+    // }
   };
 
   return (
