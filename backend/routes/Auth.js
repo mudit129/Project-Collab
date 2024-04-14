@@ -161,7 +161,7 @@ router.post('/getuser', fetchuser,
             res.send(user);
         } catch (error) {
             console.error(error.message);
-                    res.status(500).send("Internal Server error");
+            res.status(500).send("Internal Server error");
         }
     });
 
