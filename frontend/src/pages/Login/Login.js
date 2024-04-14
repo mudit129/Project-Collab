@@ -57,8 +57,8 @@ const Login = () => {
   return (
     <div className="login_container">
       <div className="login_form_container">
-        <div className="left">
-          <form className="form_container" onSubmit={handleSubmit}>
+        <div className="leftlogin">
+          <form className="form_container_login" onSubmit={handleSubmit}>
             <h1>Login to Your Account</h1>
             <input
               type="email"
@@ -67,7 +67,7 @@ const Login = () => {
               onChange={handleChange}
               value={data.email}
               required
-              className="input"
+              className="input_login"
             />
             <input
               type="password"
@@ -76,18 +76,18 @@ const Login = () => {
               onChange={handleChange}
               value={data.password}
               required
-              className="input"
+              className="input_login"
             />
-            {error && <div className="error_msg">{error}</div>}
-            <button type="submit" className="green_btn">
-              Sing In
+            {error && <div className="error_msg_login">{error}</div>}
+            <button type="submit" className="green_btn_login">
+              Sign In
             </button>
           </form>
         </div>
-        <div className="right">
-          <h1>New Here ?</h1>
+        <div className="rightlogin">
+          <h1 className="heading">New Here ?</h1>
           <Link to="/signup">
-            <button type="button" className="white_btn">
+            <button type="button" className="white_btn_login">
               Sign Up
             </button>
           </Link>

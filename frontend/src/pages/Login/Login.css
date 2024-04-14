@@ -1,3 +1,4 @@
+/* Default styles */
 .login_container {
   width: 100%;
   min-height: 100vh;
@@ -8,7 +9,8 @@
 }
 
 .login_form_container {
-  width: 900px;
+  width: 90%; /* Adjusted width for responsiveness */
+  max-width: 900px;
   height: 500px;
   display: flex;
   border-radius: 10px;
@@ -16,7 +18,7 @@
     0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
 
-.left {
+.leftlogin {
   flex: 2;
   display: flex;
   flex-direction: column;
@@ -27,43 +29,10 @@
   border-bottom-left-radius: 10px;
 }
 
-.form_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form_container h1 {
-  font-size: 40px;
-  margin-top: 0;
-  color: #3bb19b;
-}
-
-.input {
-  outline: none;
-  border: none;
-  width: 370px;
-  padding: 15px;
-  border-radius: 10px;
-  background-color: #edf5f3;
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.error_msg {
-  width: 370px;
-  padding: 15px;
-  margin: 5px 0;
-  font-size: 14px;
-  background-color: #f34646;
-  color: white;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.right {
+.rightlogin {
   flex: 1;
   display: flex;
+  margin: 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -72,28 +41,132 @@
   border-bottom-right-radius: 10px;
 }
 
-.right h1 {
-  margin-top: 0;
-  color: white;
-  font-size: 40px;
-  align-self: center;
+/* Form styles */
+.form_container_login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.white_btn,
-.green_btn {
+.form_container_login h1 {
+  font-size: 30px; /* Adjusted font size for smaller screens */
+  margin-top: 0;
+  color: #3bb19b;
+}
+
+.input_login {
+  outline: none;
+  border: none;
+  width: 100%;
+  max-width: 370px;
+  padding: 12px; /* Adjusted padding for smaller screens */
+  border-radius: 8px; /* Reduced border radius for smaller screens */
+  background-color: #edf5f3;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.error_msg_login {
+  width: 100%;
+  padding: 12px; /* Adjusted padding for smaller screens */
+  margin: 5px 0;
+  font-size: 14px;
+  background-color: #f34646;
+  color: white;
+  border-radius: 8px; /* Reduced border radius for smaller screens */
+  text-align: center;
+}
+
+/* Button styles */
+.white_btn_login,
+.green_btn_login {
   border: none;
   outline: none;
-  padding: 12px 0;
-  background-color: white;
+  padding: 12px 20px;
   border-radius: 20px;
-  width: 180px;
+  width: 100%;
+  max-width: 300px; /* Adjusted max-width for smaller screens */
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
 }
 
-.green_btn {
+.green_btn_login {
   background-color: #3bb19b;
   color: white;
-  margin: 10px;
+  margin: 10px 0; /* Adjusted margin for smaller screens */
+}
+
+.white_btn {
+  background-color: white;
+  color: black;
+  margin: 10px 0; /* Adjusted margin for smaller screens */
+}
+@media screen and (max-width: 900px) {
+  .login_form_container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .leftlogin,
+  .rightlogin {
+    flex: none;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .green_btn-login {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+
+  .white_btn_login {
+    padding: 8px 15px;
+    font-size: 13px;
+    padding-bottom: 10px;
+  }
+
+  .heading {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+
+  .leftlogin {
+    margin-right: 20px;
+    margin-bottom: 20px; /* Add margin between left and right sections */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form_container_login h1 {
+    font-size: 26px; /* Further reduced font size for smaller screens */
+  }
+
+  .input_login,
+  .error_msg_login {
+    padding: 10px; /* Further reduced padding for smaller screens */
+  }
+
+  .login_form_container {
+    padding: 20px; /* Add padding around the form container */
+  }
+
+  .green_btn_login {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+
+  .white_btn_login {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+  .heading {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+
+  .leftlogin {
+    margin-right: 20px;
+    margin-bottom: 20px; /* Add margin between left and right sections */
+  }
 }
