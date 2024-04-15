@@ -4,6 +4,7 @@ import KeyFeatures from "../components/HomePages/KeyFeatures";
 import FirstPage from "../components/HomePages/FirstPage";
 import FAQs from "../components/HomePages/FAQs";
 import Footer from "../components/HomePages/Footer";
+import AboutUsSection from "../components/HomePages/AboutUs";
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
       <FirstPage />
       <KeyFeatures />
       <FAQs />
-      <Footer />
+      <AboutUsSection />
     </div>
   );
 };
