@@ -39,7 +39,7 @@ const Navbar = (props) => {
   return (
     <nav
       className="navbar navbar-expand-lg sticky-top"
-      style={{ background: "#6998AB" }}
+      style={{ background: "#406882" }}
     >
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">

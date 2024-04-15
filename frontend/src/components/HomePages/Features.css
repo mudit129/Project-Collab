@@ -7,7 +7,9 @@
   font-weight: bold;
   color: #1a374d;
   margin: 10px;
-  justify-content: center;
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .btn:hover {

@@ -1,21 +1,27 @@
-import React from 'react'
+import React from "react";
 
 const Footer = () => {
   return (
-    <div style = {{background: "black", color: "white"}}>
-        <br></br>
-        <div className='text-center key mb-2'>
-            <h2>Aeroplatform</h2>
+    <footer
+      className="bg-dark text-white py-2"
+      style={{
+        height: "50px",
+        display: "flex",
+        alignItems: "center",
+        background: "#1A374D",
+      }}
+    >
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12 text-center">
+            <p style={{ color: "white" }}>
+              &copy; 2024 AeroPlatform. All rights reserved.
+            </p>
+          </div>
         </div>
-        {/* <br></br> */}
-        <div className='d-grid gap-2 d-md-flex justify-content-md-center'>
-            <p className='mx-4'>Home</p>
-            <p className='mx-4'>Projects</p>
-            <p className='mx-4'>About Us</p>
-        </div>
-        <br></br>
-    </div>
-  )
-}
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

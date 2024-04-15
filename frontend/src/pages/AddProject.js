@@ -2,42 +2,49 @@ import React, { useState } from "react";
 
 const AddProject = () => {
   const host = "http://localhost:5001";
-  const [profval, setProfval] = useState();
+  const [profval, setProfval] = useState("");
+  const [domainval, setDomainval] = useState("");
+  const [project, setProject] = useState({
+    title: "",
+    desc: "",
+    imageUrl: "",
+    urls: [{ url: "", urlDesc: "" }],
+  });
+
   const profs = [
     { label: "Professor 1", value: 1 },
     { label: "Professor 2", value: 2 },
     { label: "Professor 3", value: 3 },
   ];
 
-  const [domainval, setDomainval] = useState();
   const domains = [
     { label: "Domain 1", value: 1 },
     { label: "Domain 2", value: 2 },
     { label: "Domain 3", value: 3 },
   ];
 
-  const [project, setProject] = useState({
-    title: "",
-    desc: "",
-    prof: "",
-    domain: "",
-    url: "",
-    urlDesc: "",
-  });
+  const onChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedUrls = [...project.urls];
+    updatedUrls[index][name] = value;
+    setProject({ ...project, urls: updatedUrls });
+  };
 
-  const onChange = (e) => {
-    setProject({ ...project, [e.target.name]: e.target.value });
+  const addUrlInput = () => {
+    setProject({
+      ...project,
+      urls: [...project.urls, { url: "", urlDesc: "" }],
+    });
+  };
+
+  const removeUrlInput = (index) => {
+    const updatedUrls = [...project.urls];
+    updatedUrls.splice(index, 1);
+    setProject({ ...project, urls: updatedUrls });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // addNote(note.title, note.description, note.tag);
-    console.log("Title -> ", project.title);
-    console.log("Description -> ", project.desc);
-    console.log("Prof -> ", profs[profval - 1].label);
-    console.log("Domain -> ", domains[domainval - 1].label);
-    console.log("URL -> ", project.url);
-    console.log("URL Desc -> ", project.urlDesc);
     // API Call
     const response = await fetch(`${host}/api/projects/addproject`, {
       method: "POST",
@@ -48,10 +55,11 @@ const AddProject = () => {
       body: JSON.stringify({
         title: project.title,
         desc: project.desc,
-        prof: profs[profval - 1].label,
-        domain: domains[domainval - 1].label,
-        url: project.url,
-        urlDesc: project.urlDesc,
+        prof: profs.find((prof) => prof.value === parseInt(profval))?.label,
+        domain: domains.find((domain) => domain.value === parseInt(domainval))
+          ?.label,
+        imageUrl: project.imageUrl,
+        urls: project.urls,
       }),
     });
 
@@ -60,128 +68,156 @@ const AddProject = () => {
     setProject({
       title: "",
       desc: "",
-      prof: "",
-      domain: "",
-      url: "",
-      urlDesc: "",
+      imageUrl: "",
+      urls: [{ url: "", urlDesc: "" }],
     });
-    // props.showAlert("Note added successfully",'success')
   };
 
-  const handleProfSelect = (e) => {
-    setProfval(e.target.value);
-  };
-
-  const handleDomainSelect = (e) => {
-    setDomainval(e.target.value);
-  };
   return (
-    <div className="container d-flex justify-content-center align-items-center my-1">
-      <div
-        className="card border border-success"
-        style={{ width: "40rem", background: "antiquewhite" }}
-      >
-        <div className="card-body">
-          <h4 className="card-title text-center">Add Project</h4>
-          <form>
-            <div className="mb-3 ">
-              <label htmlFor="title" className="form-label">
-                Title
-              </label>
-              <input
-                type="text"
-                className="form-control border border-primary"
-                id="title"
-                name="title"
-                aria-describedby="emailHelp"
-                value={project.title}
-                onChange={onChange}
-                minLength={5}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="desc" className="form-label">
-                Description
-              </label>
-              <textarea
-                type="text"
-                rows="5"
-                className="form-control border border-primary mb-4"
-                id="desc"
-                name="desc"
-                aria-describedby="emailHelp"
-                value={project.desc}
-                onChange={onChange}
-                minLength={5}
-                required
-              />
-            </div>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-center my-4">
-              <select className="form-select" onChange={handleProfSelect}>
-                <option value="">Choose Professor</option>
-                {profs.map((prof) => (
-                  <option value={prof.value}>{prof.label}</option>
+    <div className="container my-5">
+      <div className="row justify-content-center">
+        <div className="col-lg-12">
+          <div
+            className="card border p-4 shadow"
+            style={{ background: "#B1D0E0" }}
+          >
+            <h4
+              className="card-title text-center mb-4"
+              style={{ color: "#406882", fontWeight: "2400" }}
+            >
+              Add Project
+            </h4>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label
+                  htmlFor="title"
+                  className="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Project Title
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter a title for your project"
+                  name="title"
+                  value={project.title}
+                  onChange={(e) =>
+                    setProject({ ...project, title: e.target.value })
+                  }
+                  minLength={5}
+                  required
+                />
+              </div>
+              <br />
+              <div className="mb-3">
+                <label
+                  htmlFor="description"
+                  className="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Description
+                </label>
+                <textarea
+                  rows="5"
+                  className="form-control"
+                  placeholder="Describe your project in detail "
+                  name="desc"
+                  value={project.desc}
+                  onChange={(e) =>
+                    setProject({ ...project, desc: e.target.value })
+                  }
+                  minLength={5}
+                  required
+                />
+              </div>
+              <br />
+              <div className="mb-3">
+                <label
+                  htmlFor="image"
+                  className="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Choose a cover photo for your project
+                </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  id="image"
+                  accept="image/*"
+                  onChange={(e) =>
+                    setProject({ ...project, imageUrl: e.target.value })
+                  }
+                />
+              </div>
+              <br />
+
+              <div className="mb-3">
+                <label
+                  htmlFor="url"
+                  className="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Relevant URLs (Like ResearchGate, ScienceDirect Link)
+                </label>
+                {project.urls.map((url, index) => (
+                  <div key={index} className="row mb-2 align-items-center">
+                    <div className="col-md-6 mb-2 mb-md-0">
+                      <input
+                        type="text"
+                        placeholder="Enter URL"
+                        className="form-control"
+                        name="url"
+                        value={url.url}
+                        onChange={(e) => onChange(e, index)}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <input
+                        type="text"
+                        placeholder="Enter URL Title (Like ResearchGate, max 5 words)"
+                        className="form-control"
+                        name="urlDesc"
+                        value={url.urlDesc}
+                        onChange={(e) => onChange(e, index)}
+                      />
+                    </div>
+                    {index === project.urls.length - 1 && (
+                      <div className="col-auto">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={addUrlInput}
+                        >
+                          Add More
+                        </button>
+                      </div>
+                    )}
+                    {index !== 0 && (
+                      <div className="col-auto">
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={() => removeUrlInput(index)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 ))}
-              </select>
+              </div>
 
-              <select className="form-select" onChange={handleDomainSelect}>
-                {domains.map((domain) => (
-                  <option value={domain.value}>{domain.label}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="my-4">
-              <input
-                className="file"
-                type="file"
-                //   onChange={handleFileChange}
-                id="uploadbtn"
-                //   style={{ display: "none" }}
-              />
-              <button type="button" class="btn btn-outline-success">
-                Upload Image
-              </button>
-            </div>
-            <label htmlFor="url" className="form-label">
-              Enter relevant URLs
-            </label>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-center mb-3">
-              <input
-                type="text"
-                placeholder="Enter URL"
-                value={project.url}
-                onChange={onChange}
-                className="form-control border border-primary"
-                id="url"
-                name="url"
-                aria-describedby="emailHelp"
-              />
-              <input
-                type="text"
-                placeholder="Enter URL description"
-                value={project.urlDesc}
-                onChange={onChange}
-                className="form-control border border-primary"
-                id="urlDesc"
-                name="urlDesc"
-                aria-describedby="emailHelp"
-              />
-            </div>
-
-            <p className="text-center">-------------------------------------</p>
-            <div className="d-grid gap-2">
-              <button
-                className="btn btn-outline-primary mx-auto"
-                style={{ width: "50%" }}
-                type="button"
-                onClick={handleSubmit}
+              <div
+                className="d-grid"
+                style={{ alignItems: "center", justifyContent: "center" }}
               >
-                Submit
-              </button>
-            </div>
-          </form>
+                <button className="btn btn-primary" type="submit">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
