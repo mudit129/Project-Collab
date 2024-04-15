@@ -7,12 +7,12 @@ import Footer from "../components/HomePages/Footer";
 
 const Home = () => {
   return (
-    <>
+    <div style={{ background: "rgb(22, 17, 17)" }}>
       <FirstPage />
       <KeyFeatures />
       <FAQs />
       <Footer />
-    </>
+    </div>
   );
 };
 

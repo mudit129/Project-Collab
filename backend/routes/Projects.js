@@ -86,4 +86,23 @@ router.post(
     }
   })
 
+  router.delete('/deleteproject/:id', fetchuser, async (req, res) => {
+    try {
+      let project = await Project.findById(req.params.id);
+      if (!project) {
+        return res.status(404).send("Not found");
+      }
+      // Allow deletion only if user owns this project
+      if (project.user.toString() !== req.user.id) {
+        return res.status(401).send("Not Allowed");
+      }
+  
+      project = await Project.findByIdAndDelete(req.params.id);
+      res.json({ Success: "Project has been deleted", project: project });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server error");
+    }
+  })
+
   module.exports = router;

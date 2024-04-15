@@ -37,9 +37,9 @@ const CurrentProjects = () => {
                     projectIds.map((project, idx) => {
                         return (
                         <ProjectCard
-                            id={project._id}
-                            title={project.title}
-                            desc={project.desc}
+                            project = {project}
+                            flag = {true}
+                            md = {6}
                             key={idx}
                         />
                         );
