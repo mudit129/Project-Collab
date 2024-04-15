@@ -7,6 +7,8 @@ import AccountSettings from "../../components/UserProfile/AccountSettings";
 import "./UserProfile.css";
 import ChangePassword from "../../components/UserProfile/ChangePassword";
 import img from "../../images/websitepic.jpg";
+import CurrentProjects from "../../components/UserProfile/CurrentProjects";
+import PendingRequests from "../../components/UserProfile/PendingRequests";
 
 const UserProfile = () => {
   const { activepage } = useParams();
@@ -20,6 +22,8 @@ const UserProfile = () => {
         <div className="right_profile">
           {activepage === "accountsettings" && <AccountSettings />}
           {activepage === "changepassword" && <ChangePassword />}
+          {activepage === "currentprojects" && <CurrentProjects />}
+          {activepage === "pendingrequests" && <PendingRequests />}
         </div>
       </div>
     </div>

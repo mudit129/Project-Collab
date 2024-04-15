@@ -152,12 +152,13 @@ router.post('/login',
 
 // Route 3: Get loggedin user details :POST "api/auth/getuser". N Login required 
 
-router.post('/getuser', fetchuser,
+router.get('/getuser', fetchuser,
     
     async (req,res)=>{
         try {
             const userId = req.user.id;
             const user = await User.findById(userId).select('-password');
+            console.log(user);
             res.send(user);
         } catch (error) {
             console.error(error.message);
