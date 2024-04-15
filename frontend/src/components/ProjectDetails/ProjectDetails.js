@@ -12,13 +12,13 @@ const ResearchProject = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Function to handle form submission and fetch data from Node.js API
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
   useEffect(()=>{
-    // const projectId = "6612709513d84ae1da9bc836";
-
-    axios.get(`http://localhost:${port}/api/projects/getproject/${projectId}`)
+    const url = `http://localhost:${port}/api/projects/getproject/${projectId}`;
+    axios.get(url, {
+      headers:{
+        'auth-token': localStorage.getItem('token')
+      }
+    })
     .then(res => {
       console.log(res.data.data);
       setProjectData(res.data.data);

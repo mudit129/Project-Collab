@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
+const port = 5001;
 const Navbar = (props) => {
   let location = useLocation();
   let navigate = useNavigate();
+  const [name, setName] = useState(null);
+  let [flag, setFlag] = useState(true);
+  const getName = async () => {
+    const url = `http://localhost:${port}/api/auth/getuser`;
+    const result = await axios.get(url, {
+      headers: {
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
+    setName(result.data.name);
+    console.log(result.data);
+    console.log(result.data.name);
+  };
 
-  const handleLogout = () => {
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      setName("Profile");
+    } else if (flag) {
+      setFlag(false);
+      console.log("On Navbar");
+      getName();
+    }
+  }, [localStorage.getItem("token")]);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
     localStorage.removeItem("token");
     navigate("/login");
-    props.showAlert("Logged out succesfully", "success");
+    // props.showAlert("Logged out succesfully", "success");
   };
   return (
     <nav
@@ -63,7 +89,7 @@ const Navbar = (props) => {
                 Add Project
               </Link>
             </li>
-            <li className="nav-item mx-2">
+            {/* <li className="nav-item mx-2">
               <Link
                 className={`nav-link ${
                   location.pathname === "/user/accountsettings" ? "active" : ""
@@ -72,22 +98,90 @@ const Navbar = (props) => {
               >
                 Your Profile
               </Link>
-            </li>
+            </li> */}
           </ul>
-          {!localStorage.getItem("token") ? (
-            <form className="d-flex">
-              <Link className="btn btn-primary mx-2" role="button" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-primary mx-2" role="button" to="/signup">
-                Signup
-              </Link>
-            </form>
-          ) : (
-            <button className="btn btn-primary" onClick={handleLogout}>
-              Logout
-            </button>
-          )}
+          <form className="d-flex">
+            <div
+              className="collapse navbar-collapse"
+              id="navbarNavDarkDropdown"
+            >
+              <ul className="navbar-nav">
+                <li className="nav-item dropdown">
+                  <Link
+                    className="nav-link dropdown-toggle"
+                    to="/"
+                    id="navbarDarkDropdownMenuLink"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {name}
+                  </Link>
+                  <ul
+                    className="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDarkDropdownMenuLink"
+                    style={{ background: "#B1D0E0" }}
+                  >
+                    {!localStorage.getItem("token") ? (
+                      <>
+                        <li>
+                          <Link className="dropdown-item" to="/login">
+                            Login
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" to="/signup">
+                            Signup
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/user/accountsettings"
+                          >
+                            Profile Details
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/user/currentprojects"
+                          >
+                            Current Projects
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/user/pendingrequests"
+                          >
+                            Pending Requests
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/"
+                            onClick={handleLogout}
+                          >
+                            Logout
+                          </Link>
+                        </li>
+                        {/* <li>
+                        <Link className="dropdown-item" to="/">
+                          Something else here
+                        </Link>
+                      </li> */}
+                      </>
+                    )}
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </form>
         </div>
       </div>
     </nav>

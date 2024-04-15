@@ -18,10 +18,18 @@ const FirstPage = () => {
       <br></br>
       <br></br>
       <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-        <button type="button" class="btn">
+        <button
+          type="button"
+          class="btn"
+          onClick={() => navigate("/allProjects")}
+        >
           Explore Projects
         </button>
-        <button type="button" className="btn">
+        <button
+          type="button"
+          className="btn"
+          onClick={() => navigate("/projects")}
+        >
           Learn More &rarr;
         </button>
       </div>

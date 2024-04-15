@@ -75,9 +75,10 @@ router.post(
     }
   })
 
-  router.get('/getproject/:id', async (req, res) => {
+  router.get('/getproject/:id', fetchuser, async (req, res) => {
     try {
       Project.findById(req.params.id).then((data) => {
+        console.log("Project -> ", data)
         res.send({ status: "Ok", data: data })
       })
     } catch (error) {

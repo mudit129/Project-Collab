@@ -31,12 +31,12 @@ router.post("/", async (req, res) => {
 
 router.get('/pendingProjects', fetchuser, async(req,res) => {
   try {
-    const user = await User.findById(req.user.id);
-    if(!user) {
+    const projects = await Project.find({user:req.user.id, status: "pending"})
+    if(!projects) {
       return res.status(404).send("Not Found");
     }
 
-    res.json(user.pending);
+    res.json(projects);
   }
   catch (error) {
     console.error(error.message)
@@ -46,12 +46,12 @@ router.get('/pendingProjects', fetchuser, async(req,res) => {
 
 router.get('/approvedProjects', fetchuser, async(req,res) => {
   try {
-    const user = await User.findById(req.user.id);
-    if(!user) {
+    const projects = await Project.find({user:req.user.id, status: "approved"})
+    if(!projects) {
       return res.status(404).send("Not Found");
     }
 
-    res.json(user.approved);
+    res.json(projects);
   }
   catch (error) {
     console.error(error.message)
