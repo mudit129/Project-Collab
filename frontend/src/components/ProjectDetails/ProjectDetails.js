@@ -1,111 +1,100 @@
+// ProjectDetails.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProjectDetails.css";
+import ProjectImage from "../ProjectImage/ProjectImage";
+import img from "../../images/aerospace.jpg";
 const port = 5001;
 
-const ResearchProject = () => {
-  const projectId = useParams().id;
-  // console.log("projectId", projectId);
+const ProjectDetails = () => {
+  const { id } = useParams();
 
   const [projectData, setProjectData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(()=>{
-    const url = `http://localhost:${port}/api/projects/getproject/${projectId}`;
-    axios.get(url, {
-      headers:{
-        'auth-token': localStorage.getItem('token')
-      }
-    })
-    .then(res => {
-      console.log(res.data.data);
-      setProjectData(res.data.data);
-      // setLoading(false);
+  // Example random array of resources
+  const Resources = [
+    { url: "https://www.google.com", urlDesc: "Google" },
+    { url: "https://www.youtube.com", urlDesc: "YouTube" },
+    { url: "https://www.amazon.com", urlDesc: "Amazon" },
+    { url: "https://www.flipkart.com", urlDesc: "Flipkart" },
+  ];
 
-    })
-    .catch ((error) => console.error(error))
-  },[])
-    // Get form data
-    
-  // };
+  useEffect(() => {
+    const url = `http://localhost:${port}/api/projects/getproject/${id}`;
+    axios
+      .get(url, {
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setProjectData(res.data.data);
+        setLoading(false);
+      })
+      .catch((error) => setError(error.message));
+  }, [id]);
 
-  // Render project details if data is available
-  if (projectData) {
-    const { title, desc, prof, domain} =
-      projectData;
-    return (
-      <div className="research-project">
-        {/* <div className="top-section">
-          <img src={image} alt={title} />
-          <h2>{title}</h2>
-        </div> */}
-        <div className="content-section">
-          <div className="left-column">
-            <p>{desc}</p>
-            <p>
-              <b>Professor:</b> {prof}
-            </p>
-          </div>
-          <div className="right-column">
-            <h3>Domain:</h3>
-            <p style={{ color: "orange" }}>{domain}</p>
-            {/* <h3>Resources:</h3>
-            {resources && resources.map((resource) => (
-              <div key={resource.url}>
-                <a href={resource.url} target="_blank" rel="noreferrer">
-                  {resource.url}
-                </a>
-                <p>{resource.description}</p>
-              </div>
-            ))} */}
-          </div>
-        </div>
-      </div>
-    );
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p>Error: {error}</p>;
   }
 
   if (!projectData) {
     return <p>No project data available.</p>;
   }
 
-  const { image, title, description, professorName, domain, resources } =
-    projectData;
+  const { title, desc, prof, domain, studentName, image } = projectData;
 
   return (
     <div className="research-project">
       <div className="top-section">
-        <img src={image} alt={title} />
-        <h2>{title}</h2>
+        <ProjectImage projectimage={img} alt="Noimg" />
+        <h2 style={{ color: "#406882", fontWeight: "bold" }}>{title}</h2>
       </div>
       <div className="content-section">
         <div className="left-column">
-          <p>{description}</p>
-          <p>
-            <b>Professor:</b> {professorName}
-          </p>
+          <h3 style={{ color: "#406882" }}>Description of Project</h3>
+          <p style={{ color: "#1A374D" }}>{desc}</p>
         </div>
         <div className="right-column">
-          <h3>Domain:</h3>
-          <p>{domain}</p>
-          <h3>Resources:</h3>
-          {resources.map((resource) => (
-            <div key={resource.url}>
-              <a href={resource.url} target="_blank" rel="noreferrer">
-                {resource.url}
-              </a>
-              <p>{resource.description}</p>
+          <div>
+            <p style={{ color: "#1A374D" }}>
+              <b style={{ color: "#406882" }}>Domain:</b> {domain}
+            </p>
+            <p style={{ color: "#1A374D" }}>
+              <b style={{ color: "#406882" }}>Professor:</b> {prof}
+            </p>
+            <p style={{ color: "#1A374D" }}>
+              <b style={{ color: "#406882" }}>Author:</b> {studentName}
+            </p>
+          </div>
+          {Resources && Resources.length > 0 && (
+            <div>
+              <h3 style={{ color: "#406882" }}>Resources:</h3>
+              {Resources.map((resource, index) => (
+                <div key={index}>
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: "#1A374D" }}
+                  >
+                    {resource.urlDesc}
+                  </a>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default ResearchProject;
+export default ProjectDetails;
