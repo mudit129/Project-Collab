@@ -24,34 +24,33 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  //   if(cred.password !== cred.cpassword){
-  //     props.showAlert("Passwords donot match",'danger');
-  // }
-  // else{
+    //   if(cred.password !== cred.cpassword){
+    //     props.showAlert("Passwords donot match",'danger');
+    // }
+    // else{
     const url = `http://localhost:${port}/api/auth/createuser`;
     // const url = `${host}/api/auth/createuser`;
-    const {name, rollNumber, phone, email, password} = data;
+    const { name, rollNumber, phone, email, password } = data;
 
     const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({name, rollNumber, phone, email, password})
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, rollNumber, phone, email, password }),
     });
     const output = await response.json();
-    if(output.success){
-        localStorage.setItem('token', output.authToken)
-        // props.showAlert("Account created successfully",'success')
-        alert("Account created successfully");
-        navigate("/");
+    if (output.success) {
+      localStorage.setItem("token", output.authToken);
+      // props.showAlert("Account created successfully",'success')
+      alert("Account created successfully");
+      navigate("/");
+    } else {
+      // props.showAlert("Invalid credentials",'danger')
+      alert("Invalid credentials");
     }
-    else{
-        // props.showAlert("Invalid credentials",'danger')
-        alert("Invalid credentials");
-    }
-    console.log(output)
-  // }
+    console.log(output);
+    // }
 
     // try {
     //   const url = `http://localhost:${5001}/api/users`;
@@ -82,7 +81,7 @@ const Signup = () => {
         </div>
         <div className="right">
           <form className="form_container" onSubmit={handleSubmit}>
-            <h1>Create Account</h1>
+            <h1>New? Create Account</h1>
             <input
               type="text"
               placeholder="Name as per ERP"

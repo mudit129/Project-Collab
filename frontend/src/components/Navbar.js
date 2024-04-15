@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -21,10 +21,9 @@ const Navbar = (props) => {
   };
 
   useEffect(() => {
-    if(!localStorage.getItem("token")){
-      setName("Profile")
-    }
-    else if (flag) {
+    if (!localStorage.getItem("token")) {
+      setName("Profile");
+    } else if (flag) {
       setFlag(false);
       console.log("On Navbar");
       getName();
@@ -38,7 +37,10 @@ const Navbar = (props) => {
     // props.showAlert("Logged out succesfully", "success");
   };
   return (
-    <nav className="navbar navbar-expand-lg sticky-top" style={{background: "#6998AB"}}>
+    <nav
+      className="navbar navbar-expand-lg sticky-top"
+      style={{ background: "#6998AB" }}
+    >
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           Project Collab Hub
@@ -90,80 +92,96 @@ const Navbar = (props) => {
             {/* <li className="nav-item mx-2">
               <Link
                 className={`nav-link ${
-                  location.pathname === "/user/:activepage" ? "active" : ""
+                  location.pathname === "/user/accountsettings" ? "active" : ""
                 }`}
-                to="/user/:activepage"
+                to="/user/accountsettings"
               >
                 Your Profile
               </Link>
             </li> */}
           </ul>
-            <form className="d-flex">
-              <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                <ul className="navbar-nav">
-                  <li className="nav-item dropdown">
-                    <Link
-                      className="nav-link dropdown-toggle"
-                      to="/"
-                      id="navbarDarkDropdownMenuLink"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      {name}
-                    </Link>
-                    <ul
-                      className="dropdown-menu dropdown-menu-end"
-                      aria-labelledby="navbarDarkDropdownMenuLink"
-                      style={{background: "#B1D0E0"}}
-                    >
+          <form className="d-flex">
+            <div
+              className="collapse navbar-collapse"
+              id="navbarNavDarkDropdown"
+            >
+              <ul className="navbar-nav">
+                <li className="nav-item dropdown">
+                  <Link
+                    className="nav-link dropdown-toggle"
+                    to="/"
+                    id="navbarDarkDropdownMenuLink"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {name}
+                  </Link>
+                  <ul
+                    className="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDarkDropdownMenuLink"
+                    style={{ background: "#B1D0E0" }}
+                  >
                     {!localStorage.getItem("token") ? (
-                    <>  
-                    <li>
-                      <Link className="dropdown-item" to="/login">
-                        Login
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/signup">
-                        Signup
-                      </Link>
-                    </li>
-                    </>
-                    ):
-                    ( <>
-                      <li>
-                        <Link className="dropdown-item" to="/user/accountsettings">
-                          Profile Details
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="dropdown-item" to="/user/currentprojects">
-                          Current Projects
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="dropdown-item" to="/user/pendingrequests">
-                          Pending Requests
-                        </Link>
-                      </li>                      
-                      <li>
-                        <Link className="dropdown-item" to="/" onClick={handleLogout}>
-                          Logout
-                        </Link>
-                      </li>
-                      {/* <li>
+                      <>
+                        <li>
+                          <Link className="dropdown-item" to="/login">
+                            Login
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" to="/signup">
+                            Signup
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/user/accountsettings"
+                          >
+                            Profile Details
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/user/currentprojects"
+                          >
+                            Current Projects
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/user/pendingrequests"
+                          >
+                            Pending Requests
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            to="/"
+                            onClick={handleLogout}
+                          >
+                            Logout
+                          </Link>
+                        </li>
+                        {/* <li>
                         <Link className="dropdown-item" to="/">
                           Something else here
                         </Link>
                       </li> */}
                       </>
                     )}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </form>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </form>
         </div>
       </div>
     </nav>

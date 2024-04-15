@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const AddProject = () => {
-  const host = "http://localhost:5001"
+  const host = "http://localhost:5001";
   const [profval, setProfval] = useState();
   const profs = [
     { label: "Professor 1", value: 1 },
@@ -27,7 +27,6 @@ const AddProject = () => {
 
   const onChange = (e) => {
     setProject({ ...project, [e.target.name]: e.target.value });
-    
   };
 
   const handleSubmit = async (e) => {
@@ -35,23 +34,37 @@ const AddProject = () => {
     // addNote(note.title, note.description, note.tag);
     console.log("Title -> ", project.title);
     console.log("Description -> ", project.desc);
-    console.log("Prof -> ", profs[profval-1].label);
-    console.log("Domain -> ", domains[domainval-1].label);
+    console.log("Prof -> ", profs[profval - 1].label);
+    console.log("Domain -> ", domains[domainval - 1].label);
     console.log("URL -> ", project.url);
     console.log("URL Desc -> ", project.urlDesc);
-    // API Call 
+    // API Call
     const response = await fetch(`${host}/api/projects/addproject`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        "auth-token": localStorage.getItem('token')
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({ title: project.title, desc: project.desc, prof: profs[profval-1].label, domain: domains[domainval-1].label, url: project.url, urlDesc: project.urlDesc})
+      body: JSON.stringify({
+        title: project.title,
+        desc: project.desc,
+        prof: profs[profval - 1].label,
+        domain: domains[domainval - 1].label,
+        url: project.url,
+        urlDesc: project.urlDesc,
+      }),
     });
 
     const resp = await response.json();
     console.log(resp);
-    setProject({ title: "", desc: "", prof: "", domain: "", url: "", urlDesc:"" });
+    setProject({
+      title: "",
+      desc: "",
+      prof: "",
+      domain: "",
+      url: "",
+      urlDesc: "",
+    });
     // props.showAlert("Note added successfully",'success')
   };
 
@@ -105,7 +118,6 @@ const AddProject = () => {
               />
             </div>
             <div className="d-grid gap-2 d-md-flex justify-content-md-center my-4">
-              
               <select className="form-select" onChange={handleProfSelect}>
                 <option value="">Choose Professor</option>
                 {profs.map((prof) => (
@@ -118,7 +130,6 @@ const AddProject = () => {
                   <option value={domain.value}>{domain.label}</option>
                 ))}
               </select>
-
             </div>
 
             <div className="my-4">
@@ -178,71 +189,3 @@ const AddProject = () => {
 };
 
 export default AddProject;
-
-
-
-{/* <div className="d-grid gap-2 d-md-flex justify-content-md-center my-4">
-  <div className="dropdown">
-    <button
-      className="btn btn-secondary dropdown-toggle mx-4"
-      type="button"
-      id="dropdownMenuButton1"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Select Professor
-    </button>
-    <ul
-      className="dropdown-menu"
-      aria-labelledby="dropdownMenuButton1"
-    >
-      <li>
-        <a className="dropdown-item" href="/">
-          Professor 1
-        </a>
-      </li>
-      <li>
-        <a className="dropdown-item" href="/">
-          Professor 2
-        </a>
-      </li>
-      <li>
-        <a className="dropdown-item" href="/">
-          Professor 3
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <div className="dropdown">
-    <button
-      className="btn btn-secondary dropdown-toggle mx-4"
-      type="button"
-      id="dropdownMenuButton1"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Select Domain
-    </button>
-    <ul
-      className="dropdown-menu"
-      aria-labelledby="dropdownMenuButton1"
-    >
-      <li>
-        <a className="dropdown-item" href="/">
-          Domain 1
-        </a>
-      </li>
-      <li>
-        <a className="dropdown-item" href="/">
-          Domain 2
-        </a>
-      </li>
-      <li>
-        <a className="dropdown-item" href="/">
-          Domain 3
-        </a>
-      </li>
-    </ul>
-  </div>
-</div> */}
