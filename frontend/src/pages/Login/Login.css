@@ -2,7 +2,7 @@
 .login_container {
   width: 100%;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #406882;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +14,8 @@
   height: 500px;
   display: flex;
   border-radius: 10px;
+  background-color: white;
+
   box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
     0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
@@ -24,21 +26,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  background-color: #b1d0e0;
+  margin: 10px;
+  border-radius: 10px;
 }
 
 .rightlogin {
   flex: 1;
   display: flex;
-  margin: 10px;
+
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #3bb19b;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  background-color: #6998ab;
+  margin: 10px;
+  border-radius: 10px;
 }
 
 /* Form styles */
@@ -51,7 +53,7 @@
 .form_container_login h1 {
   font-size: 30px; /* Adjusted font size for smaller screens */
   margin-top: 0;
-  color: #3bb19b;
+  color: #1a374d;
 }
 
 .input_login {
@@ -92,30 +94,37 @@
 }
 
 .green_btn_login {
-  background-color: #3bb19b;
+  background-color: #1a374d;
   color: white;
   margin: 10px 0; /* Adjusted margin for smaller screens */
 }
 
-.white_btn {
+.white_btn_login {
   background-color: white;
-  color: black;
+  color: #1a374d;
+
   margin: 10px 0; /* Adjusted margin for smaller screens */
+}
+
+.heading {
+  color: white;
 }
 @media screen and (max-width: 900px) {
   .login_form_container {
     flex-direction: column;
     height: auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .leftlogin,
   .rightlogin {
     flex: none;
-    width: 100%;
-    border-radius: 0;
+    width: 90%;
+    margin: 20px;
   }
 
-  .green_btn-login {
+  .green_btn_login {
     padding: 8px 15px;
     font-size: 13px;
   }
@@ -130,11 +139,6 @@
     font-size: 22px;
     margin-top: 10px;
   }
-
-  .leftlogin {
-    margin-right: 20px;
-    margin-bottom: 20px; /* Add margin between left and right sections */
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -142,6 +146,10 @@
     font-size: 26px; /* Further reduced font size for smaller screens */
   }
 
+  .form_container_login {
+    align-items: center;
+    justify-content: center;
+  }
   .input_login,
   .error_msg_login {
     padding: 10px; /* Further reduced padding for smaller screens */
@@ -163,10 +171,5 @@
   .heading {
     font-size: 22px;
     margin-top: 10px;
-  }
-
-  .leftlogin {
-    margin-right: 20px;
-    margin-bottom: 20px; /* Add margin between left and right sections */
   }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import SingleBanner from "../../components/Banner/SingleBanner";
-import Navbar from "../../components/Navbar";
 import { useParams } from "react-router-dom";
 import UserSidebar from "../../components/UserProfile/UserSidebar";
 import AccountSettings from "../../components/UserProfile/AccountSettings";

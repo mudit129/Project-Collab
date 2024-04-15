@@ -11,7 +11,10 @@ const Navbar = (props) => {
     props.showAlert("Logged out succesfully", "success");
   };
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav
+      className="navbar navbar-expand-lg sticky-top"
+      style={{ background: "#6998AB" }}
+    >
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           Project Collab Hub
@@ -63,9 +66,9 @@ const Navbar = (props) => {
             <li className="nav-item mx-2">
               <Link
                 className={`nav-link ${
-                  location.pathname === "/user/:activepage" ? "active" : ""
+                  location.pathname === "/user/accountsettings" ? "active" : ""
                 }`}
-                to="/user/:activepage"
+                to="/user/accountsettings"
               >
                 Your Profile
               </Link>

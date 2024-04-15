@@ -1,6 +1,7 @@
 .userprofile {
   display: flex;
   flex-direction: column;
+  background-color: rgb(177, 208, 224);
 }
 
 .userprofilein {
@@ -14,17 +15,20 @@
 .userprofile .userprofilein .left_profile {
   width: 20%;
 
-  border: 1px solid rgb(207, 207, 207);
+  border: 1px solid #1a374d;
   border-radius: 5px;
   min-height: 50vh;
+  margin-bottom: 40px;
 }
 
 .userprofile .userprofilein .right_profile {
   width: 60%;
 
-  border: 1px solid rgb(207, 207, 207);
+  border: 1px solid #1a374d;
+  border: 1px solid;
   border-radius: 5px;
   min-height: 50vh;
+  margin-bottom: 40px;
 }
 
 @media (max-width: 1000px) {
