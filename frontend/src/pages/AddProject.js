@@ -138,7 +138,7 @@ const AddProject = () => {
                   className="form-label"
                   style={{ fontWeight: "600" }}
                 >
-                  Choose Domain
+                  Choose a Domain
                 </label>
                 <select
                   className="form-select"

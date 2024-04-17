@@ -1,109 +1,76 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ProjectCard from "../components/ProjectCard";
-import axios from "axios"
 
-const AllProjects = () => {
-  const arr = [1, 2, 3, 4, 5, 6, 7];
-  const [allProjects, setAllProjects] = useState(null);
-  console.log(arr);
-  const getPdf = async()=>{
-    const url = "http://localhost:5001/api/projects/get-all-projects";
-    console.log(url)
-    const result = await axios.get(url);
-    console.log(result.data.data);
-    setAllProjects(result.data.data);
-  }
-  
-  useEffect(()=>{
-    console.log("On All Projects Page")
+const AllProjectsPage = () => {
+  const [allProjects, setAllProjects] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDomain, setSelectedDomain] = useState("");
+
+  useEffect(() => {
     getPdf();
-  },[])
-  return (
-    <div className="d-grid gap-1 d-md-flex justify-content-md-center">
-      <div className="card" style={{ width: "20%" }}>
-        <br></br>
-        <br></br>
-        <h3 className="text-center">Apply Filters</h3>
-        <h5 className="mx-2 mt-4">Select Professors</h5>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Professor 1
-          </label>
-        </div>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Professor 2
-          </label>
-        </div>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Professor 3
-          </label>
-        </div>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Professor 4
-          </label>
-        </div>
+  }, []);
 
-        <h5 className="mx-2 mt-4">Select Domain</h5>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Domain 1
-          </label>
-        </div>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Domain 2
-          </label>
-        </div>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Domain 3
-          </label>
-        </div>
-        <div class="mb-3 mx-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Domain 4
-          </label>
-        </div>
-      </div>
-      <div className="container">
-        <br></br>
-        <br></br>
-        <br></br>
-        <div className="d-grid gap-1 d-md-flex justify-content-md-center">
+  const getPdf = async () => {
+    const url = "http://localhost:5001/api/projects/get-all-projects";
+    const result = await axios.get(url);
+    setAllProjects(result.data.data);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleDomainChange = (event) => {
+    setSelectedDomain(event.target.value);
+  };
+
+  const filteredProjects = allProjects.filter((project) => {
+    return (
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedDomain === "" || project.domain === selectedDomain)
+    );
+  });
+
+  return (
+    <div className="container">
+      <h3 className="text-center key">All Projects</h3>
+      <div className="row mb-3">
+        <div className="col-md-6">
           <input
-            style={{ width: "40%" }}
             type="text"
             className="form-control"
-            placeholder="Search here"
-            required
+            placeholder="Search by project title"
+            value={searchTerm}
+            onChange={handleSearchChange}
           />
-          <button className="btn btn-success">Search</button>
         </div>
-        <br></br>
-        <br></br>
-        <div className="container">
-          <h3 className="text-center key">All Projects</h3>
-          <div className="container row">
-            {allProjects && allProjects.map((project,idx) => {
-              return <ProjectCard id = {project._id} title = {project.title} desc = {project.desc} key={idx} />;
-            })}
-          </div>
+        <div className="col-md-6">
+          <select
+            className="form-control"
+            value={selectedDomain}
+            onChange={handleDomainChange}
+          >
+            <option value="">All Domains</option>
+            <option value="Domain 1">Domain 1</option>
+            <option value="Domain 2">Domain 2</option>
+            {/* Add more options as needed */}
+          </select>
         </div>
+      </div>
+      <div className="row">
+        {filteredProjects.map((project, idx) => (
+          <ProjectCard
+            key={idx}
+            id={project._id}
+            title={project.title}
+            domain={project.domain}
+            desc={project.desc}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-export default AllProjects;
-
+export default AllProjectsPage;
