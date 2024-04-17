@@ -134,6 +134,50 @@ const AddProject = () => {
               <br />
               <div className="mb-3">
                 <label
+                  htmlFor="domain"
+                  className="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Choose Domain
+                </label>
+                <select
+                  className="form-select"
+                  value={domainval}
+                  onChange={(e) => setDomainval(e.target.value)}
+                >
+                  <option value="">Select Domain</option>
+                  {domains.map((domain) => (
+                    <option key={domain.value} value={domain.value}>
+                      {domain.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <br />
+              <div className="mb-3">
+                <label
+                  htmlFor="professor"
+                  className="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Choose Professor
+                </label>
+                <select
+                  className="form-select"
+                  value={profval}
+                  onChange={(e) => setProfval(e.target.value)}
+                >
+                  <option value="">Select Professor</option>
+                  {profs.map((prof) => (
+                    <option key={prof.value} value={prof.value}>
+                      {prof.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <br />
+              <div className="mb-3">
+                <label
                   htmlFor="image"
                   className="form-label"
                   style={{ fontWeight: "600" }}
