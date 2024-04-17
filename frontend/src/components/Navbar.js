@@ -42,7 +42,11 @@ const Navbar = (props) => {
       style={{ background: "#406882" }}
     >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link
+          className="navbar-brand"
+          to="/"
+          style={{ textDecoration: "none", color: "white" }}
+        >
           Project Collab Hub
         </Link>
         <button
@@ -57,7 +61,7 @@ const Navbar = (props) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
             <li className="nav-item mx-2">
               <Link
                 className={`nav-link ${
@@ -65,6 +69,7 @@ const Navbar = (props) => {
                 }`}
                 aria-current="page"
                 to="/"
+                style={{ textDecoration: "none", color: "white" }}
               >
                 Home
               </Link>
@@ -72,11 +77,12 @@ const Navbar = (props) => {
             <li className="nav-item mx-2">
               <Link
                 className={`nav-link ${
-                  location.pathname === "/about" ? "active" : ""
+                  location.pathname === "/allProjects" ? "active" : ""
                 }`}
-                to="/about"
+                to="/allProjects"
+                style={{ textDecoration: "none", color: "white" }}
               >
-                About
+                Projects
               </Link>
             </li>
             <li className="nav-item mx-2">
@@ -85,6 +91,7 @@ const Navbar = (props) => {
                   location.pathname === "/addProject" ? "active" : ""
                 }`}
                 to="/addProject"
+                style={{ textDecoration: "none", color: "white" }}
               >
                 Add Project
               </Link>
@@ -114,6 +121,7 @@ const Navbar = (props) => {
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
+                    style={{ textDecoration: "none", color: "white" }}
                   >
                     {name}
                   </Link>
@@ -125,12 +133,20 @@ const Navbar = (props) => {
                     {!localStorage.getItem("token") ? (
                       <>
                         <li>
-                          <Link className="dropdown-item" to="/login">
+                          <Link
+                            className="dropdown-item"
+                            to="/login"
+                            style={{ textDecoration: "none", color: "white" }}
+                          >
                             Login
                           </Link>
                         </li>
                         <li>
-                          <Link className="dropdown-item" to="/signup">
+                          <Link
+                            className="dropdown-item"
+                            to="/signup"
+                            style={{ textDecoration: "none", color: "white" }}
+                          >
                             Signup
                           </Link>
                         </li>
@@ -141,6 +157,7 @@ const Navbar = (props) => {
                           <Link
                             className="dropdown-item"
                             to="/user/accountsettings"
+                            style={{ textDecoration: "none", color: "#1A374D" }}
                           >
                             Profile Details
                           </Link>
@@ -149,6 +166,7 @@ const Navbar = (props) => {
                           <Link
                             className="dropdown-item"
                             to="/user/currentprojects"
+                            style={{ textDecoration: "none", color: "#1A374D" }}
                           >
                             Current Projects
                           </Link>
@@ -157,6 +175,7 @@ const Navbar = (props) => {
                           <Link
                             className="dropdown-item"
                             to="/user/pendingrequests"
+                            style={{ textDecoration: "none", color: "#1A374D" }}
                           >
                             Pending Requests
                           </Link>
@@ -166,6 +185,7 @@ const Navbar = (props) => {
                             className="dropdown-item"
                             to="/"
                             onClick={handleLogout}
+                            style={{ textDecoration: "none", color: "#1A374D" }}
                           >
                             Logout
                           </Link>

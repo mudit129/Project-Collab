@@ -19,9 +19,9 @@ const FAQs = () => {
         <div className="container mx-5" style={{ width: "80%" }}>
           <h4 style={{ color: "#406882" }}>How do I submit a project?</h4>
           <p style={{ color: "#1A374D" }}>
-            To submit a project, navigate to the Projects page and click on the
-            "Add Projects" button. Fill out the required information in the
-            pop-up form and submit your project proposal.
+            To submit a project, click on the "Add Projects" button. Fill out
+            the required information in the pop-up form and submit your project
+            proposal.
           </p>
 
           <h4 style={{ color: "#406882" }}>

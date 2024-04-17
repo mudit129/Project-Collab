@@ -24,7 +24,11 @@ const UserSidebar = ({ activepage }) => {
           <span>Account Settings</span>
         </div>
       ) : (
-        <Link to="/user/accountsettings" className="stylenone">
+        <Link
+          to="/user/accountsettings"
+          className="stylenone"
+          style={{ textDecoration: "none" }}
+        >
           <div className="s1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +73,11 @@ const UserSidebar = ({ activepage }) => {
           <span>Change Password</span>
         </div>
       ) : (
-        <Link to="/user/changepassword" className="stylenone">
+        <Link
+          to="/user/changepassword"
+          className="stylenone"
+          style={{ textDecoration: "none" }}
+        >
           <div className="s1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +123,11 @@ const UserSidebar = ({ activepage }) => {
           <span>Current Projects</span>
         </div>
       ) : (
-        <Link to="/user/currentprojects" className="stylenone">
+        <Link
+          to="/user/currentprojects"
+          className="stylenone"
+          style={{ textDecoration: "none" }}
+        >
           <div className="s1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +168,11 @@ const UserSidebar = ({ activepage }) => {
           <span>Pending Requests</span>
         </div>
       ) : (
-        <Link to="/user/pendingrequests" className="stylenone">
+        <Link
+          to="/user/pendingrequests"
+          className="stylenone"
+          style={{ textDecoration: "none" }}
+        >
           <div className="s1">
             <svg
               xmlns="http://www.w3.org/2000/svg"

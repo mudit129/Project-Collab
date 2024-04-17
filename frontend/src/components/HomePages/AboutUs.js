@@ -38,6 +38,7 @@ const AboutUsSection = () => {
               to="https://www.iitkgp.ac.in/department/AE/faculty/ae-mira"
               target="_blank"
               rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
             >
               <h5 style={{ color: "#1A374D" }}>Professor Mira Mitra</h5>
             </Link>
@@ -57,6 +58,7 @@ const AboutUsSection = () => {
               to="https://www.linkedin.com/in/sunidhi-tiwari-3a3072201/"
               target="_blank"
               rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
             >
               <h5 style={{ color: "#1A374D" }}>Sunidhi Tiwari</h5>
             </Link>
@@ -76,6 +78,7 @@ const AboutUsSection = () => {
               to="https://www.linkedin.com/in/mudit-bhugari-35b1101a6/"
               target="_blank"
               rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
             >
               <h5 style={{ color: "#1A374D" }}>Mudit Kumar Bhugari</h5>
             </Link>
